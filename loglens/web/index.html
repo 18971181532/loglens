@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LogLens — Log Intelligence</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand">🔍 LogLens</div>
+  <div class="pills">
+    <span class="pill"><b id="k-lines">–</b> lines</span>
+    <span class="pill"><b id="k-errors">–</b> errors</span>
+    <span class="pill"><b id="k-warns">–</b> warns</span>
+    <span class="pill"><b id="k-events">–</b> events</span>
+    <span class="pill"><b id="k-rate">–</b> err%</span>
+    <span class="pill"><b id="k-range">–</b></span>
+  </div>
+  <button id="btn-rescan" onclick="load()">↻ Rescan</button>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="timeline">Timeline</button>
+  <button class="tab" data-tab="levels">Levels</button>
+  <button class="tab" data-tab="clusters">Clusters</button>
+  <button class="tab" data-tab="errors">Errors</button>
+  <button class="tab" data-tab="anomalies">Anomalies</button>
+  <button class="tab" data-tab="raw">Raw</button>
+</nav>
+
+<main>
+  <section id="tab-timeline" class="tab-panel active">
+    <div class="chart-wrap">
+      <canvas id="chart-timeline"></canvas>
+    </div>
+    <div class="legend">
+      <span><i class="dot total"></i>total</span>
+      <span><i class="dot error"></i>error</span>
+      <span><i class="dot warning"></i>warning</span>
+    </div>
+  </section>
+
+  <section id="tab-levels" class="tab-panel">
+    <div id="levels-bars" class="bars"></div>
+  </section>
+
+  <section id="tab-clusters" class="tab-panel">
+    <div class="table-wrap">
+      <table id="clusters-table">
+        <thead><tr><th>#</th><th>count</th><th>level</th><th>template</th><th>sample</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="tab-errors" class="tab-panel">
+    <div class="table-wrap">
+      <table id="errors-table">
+        <thead><tr><th>#</th><th>count</th><th>level</th><th>template</th><th>sample</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="tab-anomalies" class="tab-panel">
+    <div id="anomalies-list" class="anomalies"></div>
+  </section>
+
+  <section id="tab-raw" class="tab-panel">
+    <div class="table-wrap">
+      <table id="raw-table">
+        <thead><tr><th>line</th><th>time</th><th>level</th><th>source</th><th>message</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>LogLens · local-first · zero dependencies</footer>
+<script src="app.js"></script>
+</body>
+</html>
